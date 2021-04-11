@@ -16,3 +16,7 @@ request.onupgradeneeded = function(e) {
         checkDatabase();
     }
 };
+
+request.onerror = function(e) {
+    console.log(`There was an error ${e.target.errorCode}`);
+  };
