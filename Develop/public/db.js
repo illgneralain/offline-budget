@@ -10,8 +10,7 @@ request.onupgradeneeded = function(e) {
 
   request.onsuccess = function(e) {
     db = e.target.result;
-    // tx = db.transaction(storeName, "readwrite");
-    // store = tx.objectStore(storeName);
+   
     if (navigator.onLine) {
         checkDatabase();
     }
@@ -20,3 +19,9 @@ request.onupgradeneeded = function(e) {
 request.onerror = function(e) {
     console.log(`There was an error ${e.target.errorCode}`);
   };
+
+  function saveRecord(record) {
+    const transaction = db.transaction(['pending'], "readwrite");
+    const store = transaction.objectStore('pending');
+    store.add(record);
+  }
